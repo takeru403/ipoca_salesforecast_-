@@ -24,7 +24,7 @@ RUN pip install --upgrade setuptools
 #versionの指定を行った、requirements.txtのダウンロード
 #最初はtxtでインストールを行い、完全にversionを合わせるためにpip freeze > requirements.lockに落とし込む
 RUN pip install -r requirements.lock
-# RUN pip install -r requirements.txt
+# RUN pip install -r requirements.tx
 
 
 
