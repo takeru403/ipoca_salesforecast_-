@@ -1,0 +1,206 @@
+:root{
+    --asushiru-color: #7071B6;
+}
+
+
+body{
+    font-family: sans-serif;
+}
+
+/*メイン部分のの幅を調整*/
+#root > div:nth-child(1) > div > div > div > div > section.main.css-1v3fvcr.egzxvld1 > div{
+  padding: 1rem 1rem 1rem;
+  max-width: 80rem;
+}
+
+/* #メイン部分を少し下に置く */
+#root > div:nth-child(1) > div > div > div > div{
+  position: absolute;
+  top:6em;
+}
+/*サイドバーの位置*/
+#root > div:nth-child(1) > div > div > div > div > section.css-1lcbmhc.e1fqkh3o0 > div.css-1d391kg.e1fqkh3o1 > div.css-119ihf6.e1fqkh3o2{
+  position: absolute;
+  top:3rem;
+}
+/*＞ボタンの位置*/
+#root > div:nth-child(1) > div > div > div > div > section.css-1lcbmhc.e1fqkh3o0 > div.css-sg054d.e1fqkh3o3{
+  position: absolute;
+  top:3rem;
+}
+
+
+/*ラジオボタンのスタイルを変更*/
+div.st-bj.st-bn.st-bo.st-bp.st-bq.st-br.st-az.st-b4.st-bs.st-bt.st-bu.st-bv.st-bw.st-bx.st-by.st-bz.st-c0.st-c1.st-b2.st-c2{
+    background-color: red;
+
+}
+
+#root > div:nth-child(1) > div > div{
+  background-color: #7071B6;
+} 
+
+
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+html {
+    /* -webkit-box-sizing: border-box; */
+    /*box-sizing: border-box;*/
+    font-size: 62.5%;
+  }
+.btn,
+a.btn,
+button.btn {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+
+/*ボタンの色の定義*/
+div.stButton > button:first-child{
+  position: relative;
+  font-weight: bold;
+  font-size: x-large;
+  width: 145px;
+  height: 145px;
+  margin: 0 auto;
+
+  border-radius: 50%;
+  background: white;
+  background: -webkit-linear-gradient(
+    315deg,
+    white 0%,
+    white 22%,
+    #ddd 44%,
+    #a5a5a5 52%,
+    black 100%
+  );
+  background: linear-gradient(
+    135deg,
+    white 0%,
+    white 22%,
+    #ddd 44%,
+    #a5a5a5 52%,
+    black 100%
+  );
+  border:solid;
+  border:3px;
+  /* border: linear-gradient(
+    135deg,
+    rgb(229, 24, 24) 0%,
+    white 22%,
+    rgb(83, 15, 15) 44%,
+    #a5a5a5 52%,
+    rgb(52, 35, 139) 100%
+  ); */
+
+  -webkit-box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+/*ドラッグアンドドロップの英語の部分を置換する。*/
+span.css-9ycgxx.exg6vvm3{
+    font-size: 0;
+
+}
+span.css-9ycgxx.exg6vvm3::before{
+    content: "ドラッグ&ドロップしてください";
+    font-size:12px;
+
+}
+
+/* 
+#root > div:nth-child(1) > div > div > div > div > section.main.css-1v3fvcr.egzxvld1 > div{
+  padding-top: 30;
+} */
+
+
+/*ヘッダーの設定*/
+* {
+    margin:0; padding:0;
+  }
+  header {
+    background-color: #7071B6;
+    width: 100%;
+    padding: 20px 0; 
+    margin: 0 auto;
+    text-align: center;
+  }
+  /* header::before{
+    content: url(https://ipoca.jp/wp-content/themes/ipoca_hp/asushiru/img/logo.svg);
+    display: inline-block;
+  } */
+  #root > div:nth-child(1) > div > div > div > header > div.css-r698ls.e8zbici2::after{
+    content: url(https://ipoca.jp/wp-content/themes/ipoca_hp/asushiru/img/logo.svg);
+    display: inline-block;
+  }
+
+  header .headline{
+    font-size: 32px;
+  }
+  .nav-list {
+    text-align: center;
+    padding: 10px 0;
+    margin: 0 auto;
+  }
+  .nav-list-item {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+  }
+
+
+  /* #made by streamlit の削除 */
+  #root > div:nth-child(1) > div > div > div > div > section.main.css-1v3fvcr.egzxvld1 > footer{
+    font-size:0;
+  }
+
+
+  #root > div:nth-child(1) > div > div > div > div > section.css-1lcbmhc.e1fqkh3o0 > div.css-2w9zj8.e1fqkh3o3 > button{
+    font-size: 0;
+  }
+  #root > div:nth-child(1) > div > div > div > div > section.css-1lcbmhc.e1fqkh3o0 > div.css-2w9zj8.e1fqkh3o3 > button > svg{
+    font-size: 0;
+  }
+  #root > div:nth-child(1) > div > div > div > div > section.css-1lcbmhc.e1fqkh3o0 > div.css-2w9zj8.e1fqkh3o3 > button > svg > path{
+    font-size: 0;
+  }
+  #root > div:nth-child(1) > div > div > div > div > section.css-1lcbmhc.e1fqkh3o0 > div.css-2w9zj8.e1fqkh3o3 > button > svg{
+    font-size: 0;
+    content: "";
+  }
+  #MainMenu > button{
+    font-size: 0;
+  }
+  #MainMenu > button > svg > path{
+    font-size: 0;
+  }
+  
+  #MainMenu{
+    font-size: 0;
+  }
