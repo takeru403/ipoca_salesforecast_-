@@ -71,11 +71,11 @@ def app():
             #tune_model() # 計算に時間がかかるので、今回は行わない。
 
             model = create_model(best)
-            final = finalize_model(model)
+            # final = finalize_model(model)
             #final変数を予測で使えるように書き出しておく
 
             # 問題のところ
-            joblib.dump(final,"final.txt")
+            # joblib.dump(final,"final.txt")
 
             # arima = create_model('arima')
             # ts は　timeseries プロットのこと
@@ -86,16 +86,16 @@ def app():
 
             st.write("学習が終了しました。時系列予測フェーズに進んで下さい。")
 
-            try:
-                # model upload
-                s3.upload(os.path.join(BASE_PATH, 'models', f'{model_name}.pkl'), f'{model_name}.pkl')
-                # data upload
-                s3.upload(os.path.join(BASE_PATH, 'train_data', uploaded_file), uploaded_file)
-                # model & data delete
-                os.remove(f'{model_name}.pkl')
-                os.remove(uploaded_file)
-            except Exception as error:
-                print(error)
-                st.write(f"モデルとデータがuploadに失敗しました。: {error}")
+            # try:
+            #     # model upload
+            #     s3.upload(os.path.join(BASE_PATH, 'models', f'{model_name}.pkl'), f'{model_name}.pkl')
+            #     # data upload
+            #     s3.upload(os.path.join(BASE_PATH, 'train_data', uploaded_file), uploaded_file)
+            #     # model & data delete
+            #     os.remove(f'{model_name}.pkl')
+            #     os.remove(uploaded_file)
+            # except Exception as error:
+            #     print(error)
+            #     st.write(f"モデルとデータがuploadに失敗しました。: {error}")
 # importエラーの可能性
 # scikit-learnのversionを0.23.2から、1.0.2に変更しなくてはいけない?

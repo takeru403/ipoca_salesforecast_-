@@ -115,8 +115,8 @@ def app():
             st.write(best_model_results_japan) # 比較結果の表示
             #今回は、何が高いのか調べる。ものを予測モデルとして選んでいるが、自分で学習モデルを選べるようにすることも考える。
 
-            # select_model = best_model_results.index[0]
-            select_model = "xgboost"
+            select_model = best_model_results.index[0]
+            # select_model = "xgboost"
             model = create_model(select_model)
             final = finalize_model(model)
             # str(model_name) = select_model+target+'_saved_'+datetime.date.today().strftime('%Y%m%d')
@@ -128,7 +128,15 @@ def app():
             y_train =get_config("y_train")
             y_test = get_config("y_test")
 
-            save_model(final, model_name)
+            #save_model(final, model_name)
+            save_model(final, select_model+target+'_saved_'+datetime.date.today().strftime('%Y%m%d'))
+                #特徴量説明量
+            plot_model(model, plot="feature", display_format="streamlit")
+
+            #残差
+            plot_model(model, plot="error", display_format="streamlit")                
+
+       
 
             # このモデルが選ばれた場合は直接描画できる。
             if select_model == 'ridge' or select_model == 'en' or select_model == 'huber' or select_model == 'lasso' or select_model == 'lr' or select_model == 'llar' or select_model == 'lar' or select_model == 'par' or select_model == 'et' or select_model == 'br' or select_model == 'ada' or select_model == 'gbr':
@@ -160,7 +168,7 @@ def app():
 
 
 
-            # これ以降のモデルは保存して出力を行う。
+            # # これ以降のモデルは保存して出力を行う。
             elif select_model == 'rf' or select_model == 'dt':
                 xai_filename = {'model_type': 0, 'filename': f'{TODAY}_Shap_TreeExplainer_{select_model}.png'}
                 explainer = shap.TreeExplainer(model=model,data=X_test, feature_perturbation="interventional")
@@ -183,40 +191,41 @@ def app():
             else:
                 xai_filename = {'model_type': 999, 'filename': ''}
                 st.write("解釈できるモデルではありませんでした。(dummy回帰のみ、解釈できない)")
+            st.markdown("モデル構築が完了しました")
+            st.markdown("自分のパソコンに拡張子がpklのファイルがあることを確認して、予測フェーズへと進んでください")
+            # try:
+            #     if xai_filename['model_type'] != 999:
+            #         # rename
+            #         if xai_filename['model_type'] == 1:
+            #             os.rename('Feature Importance.png', xai_filename['filename'])
+            #             img = Image.open(xai_filename['filename'])
+            #             st.image(img, use_column_width=True)
+            #         elif xai_filename['model_type'] == 2:
+            #             os.rename('SHAP summary.png', xai_filename['filename'])
+            #             img = Image.open(xai_filename['filename'])
+            #             st.image(img, use_column_width=True)
+            #         else:
+            #             pass # model_type: 0 は何もしない
+            #         if os.path.exists(os.path.join('.', xai_filename['filename'])):
+            #             str_xai_filename = xai_filename['filename']
+            #             s3.upload(os.path.join(BASE_PATH, 'xai', f'{str(str_xai_filename)}'), f'{str(str_xai_filename)}')
+            #     else:
+            #         pass #* 解釈できるモデルではない時
+            # except Exception as error:
+            #     print(error)
+            #     st.error(f"XAIの画像アップロードに失敗しました。: {error}")
+            #     dropfiles()
+           
 
-            try:
-                if xai_filename['model_type'] != 999:
-                    # rename
-                    if xai_filename['model_type'] == 1:
-                        os.rename('Feature Importance.png', xai_filename['filename'])
-                        img = Image.open(xai_filename['filename'])
-                        st.image(img, use_column_width=True)
-                    elif xai_filename['model_type'] == 2:
-                        os.rename('SHAP summary.png', xai_filename['filename'])
-                        img = Image.open(xai_filename['filename'])
-                        st.image(img, use_column_width=True)
-                    else:
-                        pass # model_type: 0 は何もしない
-                    if os.path.exists(os.path.join('.', xai_filename['filename'])):
-                        str_xai_filename = xai_filename['filename']
-                        s3.upload(os.path.join(BASE_PATH, 'xai', f'{str(str_xai_filename)}'), f'{str(str_xai_filename)}')
-                else:
-                    pass #* 解釈できるモデルではない時
-            except Exception as error:
-                print(error)
-                st.error(f"XAIの画像アップロードに失敗しました。: {error}")
-                dropfiles()
+            # st.markdown("予測フェーズへと進んでください。")
 
-            st.markdown("モデル構築が完了しました。")
+            # try:
+            #     # model upload
+            #     # s3.upload(os.path.join(BASE_PATH, 'models', f'{str(model_name)}.pkl'), f'{str(model_name)}.pkl')
+            #     # model & data delete
+            #     # dropfiles()
 
-            st.markdown("予測フェーズへと進んでください。")
-
-            try:
-                # model upload
-                s3.upload(os.path.join(BASE_PATH, 'models', f'{str(model_name)}.pkl'), f'{str(model_name)}.pkl')
-                # model & data delete
-                dropfiles()
-            except Exception as error:
-                print(error)
-                st.error(f"モデルとデータのuploadに失敗しました。: {error}")
-                dropfiles()
+            # except Exception as error:
+            #     print(error)
+            #     st.error(f"モデルとデータのuploadに失敗しました。: {error}")
+            #     dropfiles()

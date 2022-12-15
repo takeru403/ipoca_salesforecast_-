@@ -18,13 +18,14 @@ def app():
     a = joblib.load("final.txt")
     st.markdown("# 予測フェーズ")
     st.markdown("# 1.モデルを読み込みます")
-    s3 = S3Service()
-    model_lt = s3.ls(MODEL_PATH)
-    pkl_lt = [''] + [os.path.splitext(f)[0].replace(f'{MODEL_PATH}/', '') for f in model_lt if os.path.splitext(f)[0].rsplit("/", 1)[0] == MODEL_PATH]
+    # s3 = S3Service()
+    # model_lt = s3.ls(MODEL_PATH)
+    # pkl_lt = [''] + [os.path.splitext(f)[0].replace(f'{MODEL_PATH}/', '') for f in model_lt if os.path.splitext(f)[0].rsplit("/", 1)[0] == MODEL_PATH]
+    pkl_lt = [''] + [f[:-4] for f in os.listdir(os.getcwd()) if f[-4:]=='.pkl']
     model_name = st.selectbox(label='ドロップダウンリストからモデルを選択してください',options=pkl_lt,key='model')
 
     if model_name != '':
-        s3.download(f'{model_name}.pkl', os.path.join(MODEL_PATH, f'{model_name}.pkl'))
+        # s3.download(f'{model_name}.pkl', os.path.join(MODEL_PATH, f'{model_name}.pkl'))
         dt_saved = load_model(model_name)
 
         st.markdown("# 2.予測したいデータをアップロードします")
